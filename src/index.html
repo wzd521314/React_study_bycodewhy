@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">app</div>
+
+  <script src="./assets/react.development.js"></script>
+  <script src="./assets/react-dom.development.js"></script>
+  <script src="./assets/babel.min.js"></script>
+
+
+  <!--注意事项：使用jsx，并且希望script中的jsx的代码被解析，必须在script标签中添加一个属性-->
+  <!--jsx特点：多个标签最外层只能有一个标签-->
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          count: 1
+        }
+      }
+      
+      render() {
+        return (
+          <div>
+            当前数：{this.state.count}
+            <button onClick={this.increaseCount.bind(this)}>+1</button>
+            <button onClick={this.decreaseCount.bind(this)}>-1</button>
+          </div>
+        )
+      }
+
+      increaseCount() {
+        this.setState({
+          count: this.state.count + 1
+        })
+      }
+
+      decreaseCount() {
+        this.setState({
+          count: this.state.count - 1
+        })
+      }
+
+      btnClick(message) {
+        console.log(message)
+      }
+
+    }
+    //渲染组件
+    ReactDOM.render(<App/>, document.getElementById("app"))
+
+  </script>
+</body>
+</html>
